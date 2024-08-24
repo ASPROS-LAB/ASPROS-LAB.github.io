@@ -1,0 +1,40 @@
+---
+title: "Hancheol Cho"
+layout: default
+permalink: "/author-hancheol-cho.html"
+---
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">        
+      <div class="row align-items-center mb-5">
+        <div class="col-md-9">
+          <h2 class="font-weight-bold">{{ page.title }}</h2>
+          <p class="excerpt">{{ site.members['Hancheol-Cho'].bio }}</p>
+          <p><a href="mailto:{{ site.members['Hancheol-Cho'].email }}"><i class="fa fa-envelope text-muted" aria-hidden="true"></i></a></p>
+
+          <!-- 이력 정보 추가 -->
+          <div class="mt-4">
+            <h5 class="font-weight-bold">History</h5>
+            <ul>
+              {% for item in site.members['Hancheol-Cho'].history %}
+                <li>{{ item }}</li>
+              {% else %}
+                <li>No history available</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <img alt="{{ site.members['Hancheol-Cho'].name }}" src="{{ site.baseurl }}{{ site.members['Hancheol-Cho'].avatar }}" class="rounded-circle" height="100" width="100">
+        </div>
+      </div>
+
+      <h4 class="font-weight-bold spanborder"><span>Published by</span></h4>
+      {% assign posts = site.posts | where: "author", "Hancheol Cho" %}
+      {% for post in posts %}
+      {% include main-loop-card.html %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

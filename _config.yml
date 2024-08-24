@@ -1,6 +1,6 @@
 # Site
-name: 'Mundana'
-description: 'Mundana is a free Jekyll theme for awesome people like you, Medium like.'
+name: 'ASPROS'
+description: 'ASPROS, Yonsei University'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: ''
@@ -18,23 +18,47 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   
-authors:
-    sal:
-      name:           Sal
-      site:           https://www.wowthemes.net
-      avatar:         /assets/images/avatar1.jpg
-      bio:            "Hi, I am Sal, the author of Mundana, the theme you're currently previewing. I hope you like it!"
-      email:          wowthemesnet@gmail.com
-      twitter:        https://twitter.com/wowthemesnet
+members:
+  Hancheol-Cho:
+    name: Hancheol Cho
+    role: Professor
+    site: https://www.wowthemes.net
+    avatar: /assets/images/avatar1.jpg
+    bio: "interesting about ~~~"
+    email: hancho37@yonsei.ac.kr
+    history:
+     - " 연혁 "
 
-    jane:
-      name:           Jane
-      site:           https://www.wowthemes.net
-      avatar:         /assets/images/avatar2.jpg
-      bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
-      email:          fakemail@gmail.com
-      twitter:        https://twitter.com/wowthemesnet
- 
+  Jihyeok_Kim:
+    name: Jihyeok Kim
+    role: Master Course
+    site: https://www.wowthemes.net
+    avatar: /assets/images/avatar2.jpg
+    bio: "test"
+    email: wlgur7781@naver.com
+
+    # Kyoeun-Kim:
+    #   name:           Kyoeun Kim # 나타나는 이름
+    #   site:           https://www.wowthemes.net
+    #   avatar:         /assets/images/avatar1.jpg
+    #   bio:            "Hi, I am Sal, the author of Mundana, the theme you're currently previewing. I hope you like it!"
+    #   email:          kkyoeun28@yonsei.ac.kr
+
+    # Seonghyun-Park:
+    #   name:           Seonghyun Park
+    #   site:           https://www.wowthemes.net
+    #   avatar:         /assets/images/avatar2.jpg
+    #   bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
+    #   email:          ...@naver.com
+
+    # Junseok-Moon:
+    #   name:           Junseok Moon
+    #   site:           https://www.wowthemes.net
+    #   avatar:         /assets/images/avatar2.jpg
+    #   bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
+    #   email:          ...@naver.com
+    
+
 # Defaults
 defaults:
 
