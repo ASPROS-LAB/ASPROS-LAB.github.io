@@ -30,11 +30,18 @@ permalink: "/author-hancheol-cho.html"
         </div>
       </div>
 
-      <h4 class="font-weight-bold spanborder"><span>Published by</span></h4>
-      {% assign posts = site.posts | where: "author", "Hancheol Cho" %}
-      {% for post in posts %}
-      {% include main-loop-card.html %}
-      {% endfor %}
+      <!-- Published by: Hancheol Cho의 모든 논문 목록 출력 -->
+      <h4 class="font-weight-bold spanborder"><span>Published by {{ site.members['Hancheol-Cho'].name }}</span></h4>
+      <ul>
+        {% assign publications = site.data.publications | where_exp: "publication", "publication.authors contains 'Hancheol Cho'" %}
+        {% for publication in publications %}
+          <li>
+            <strong>{{ publication.title }}</strong> - Published in {{ publication.journal }} ({{ publication.year }})
+          </li>
+        {% else %}
+          <li>No publications found.</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>

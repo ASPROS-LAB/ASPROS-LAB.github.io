@@ -1,0 +1,36 @@
+---
+title: "Publications"
+layout: default
+permalink: "/publications.html"
+---
+
+<div class="container">
+  <h2 class="font-weight-bold">Publications</h2>
+
+  <!-- Journal Articles Section -->
+  <h4 class="mt-4">Journal Articles</h4>
+  <ul>
+    {% assign journal_articles = site.data.publications | where: "category", "Journal Articles" %}
+    {% for publication in journal_articles %}
+      <li>
+        {{ publication.authors | join: ", " }}. "{{ publication.title }}". <em>{{ publication.journal }}</em>, {{ publication.year }}.
+      </li>
+    {% else %}
+      <li>No journal articles found.</li>
+    {% endfor %}
+  </ul>
+
+  <!-- International Conferences Section -->
+  <h4 class="mt-4">International Conferences</h4>
+  <ul>
+    {% assign international_conferences = site.data.publications | where: "category", "International Conferences" %}
+    {% for publication in international_conferences %}
+      <li>
+        {{ publication.authors | join: ", " }}. "{{ publication.title }}". <em>{{ publication.journal }}</em>, {{ publication.year }}.
+      </li>
+    {% else %}
+      <li>No international conferences found.</li>
+    {% endfor %}
+  </ul>
+</div>
+

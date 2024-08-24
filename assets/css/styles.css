@@ -1,0 +1,28 @@
+/* assets/css/styles.css */
+/* 기본 스타일 */
+.dropdown-menu {
+    display: none; /* 초기 상태에서는 숨겨져 있음 */
+    position: absolute;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-width: 200px;
+  }
+  
+  .dropdown-item {
+    padding: 5px 10px;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Toggle Section 초기 상태 */
+  .toggle-section {
+    display: none; /* 초기 상태에서는 모든 섹션 숨김 */
+  }
+  
