@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to ASPROS Lab!"
 date:   2024-08-24 13:06:34 +0900
 categories: jekyll update
 ---

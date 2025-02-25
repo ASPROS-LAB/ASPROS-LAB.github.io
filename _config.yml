@@ -37,26 +37,29 @@ members:
     bio: "test"
     email: wlgur7781@naver.com
 
-    # Kyoeun-Kim:
-    #   name:           Kyoeun Kim # 나타나는 이름
-    #   site:           https://www.wowthemes.net
-    #   avatar:         /assets/images/avatar1.jpg
-    #   bio:            "Hi, I am Sal, the author of Mundana, the theme you're currently previewing. I hope you like it!"
-    #   email:          kkyoeun28@yonsei.ac.kr
+  Kyoeun-Kim:
+    name: Kyoeun Kim # 나타나는 이름
+    role: Master Course
+    site: https://www.wowthemes.net
+    avatar: /assets/images/avatar2.jpg
+    bio: "test"
+    email: wlgur7781@naver.com
 
-    # Seonghyun-Park:
-    #   name:           Seonghyun Park
-    #   site:           https://www.wowthemes.net
-    #   avatar:         /assets/images/avatar2.jpg
-    #   bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
-    #   email:          ...@naver.com
+  Seonghyun-Park:
+    name: Seonghyun Park
+    role: Master Course
+    site: https://www.wowthemes.net
+    avatar: /assets/images/avatar2.jpg
+    bio: "test"
+    email: wlgur7781@naver.com
 
-    # Junseok-Moon:
-    #   name:           Junseok Moon
-    #   site:           https://www.wowthemes.net
-    #   avatar:         /assets/images/avatar2.jpg
-    #   bio:            "Blogger, fashionista, love to explore new ideas and write on my morning coffee!"
-    #   email:          ...@naver.com
+  Junseok-Moon:
+    name: Junseok Moon
+    role: Master Course
+    site: https://www.wowthemes.net
+    avatar: /assets/images/avatar2.jpg
+    bio: "test"
+    email: wlgur7781@naver.com
     
 
 # Defaults

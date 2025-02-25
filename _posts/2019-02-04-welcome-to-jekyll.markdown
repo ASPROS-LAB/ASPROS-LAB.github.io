@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to ASPROS Lab!"
 categories: [ Jekyll ]
 image: assets/images/demo1.jpg
 ---

@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
     menuItems.forEach(function(menuItem) {
       menuItem.addEventListener("click", function(event) {
-        event.preventDefault();
         var targetId = this.getAttribute("data-target");
   
         // 모든 섹션 숨기기

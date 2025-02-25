@@ -1,0 +1,22 @@
+---
+title: "Journal Articles"
+layout: default
+permalink: /publications/journal-articles.html
+---
+
+<div class="container">
+    <h2 class="font-weight-bold">Publications</h2>
+  
+    <!-- Journal Articles Section -->
+    <h4 class="mt-4">Journal Articles</h4>
+    <ul>
+      {% assign journal_articles = site.data.publications | where: "category", "Journal Articles" %}
+      {% for publication in journal_articles %}
+        <li>
+          {{ publication.authors | join: ", " }}. "{{ publication.title }}". <em>{{ publication.journal }}</em>, {{ publication.year }}.
+        </li>
+      {% else %}
+        <li>No journal articles found.</li>
+      {% endfor %}
+    </ul>
+</div>

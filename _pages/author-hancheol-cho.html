@@ -15,7 +15,7 @@ permalink: "/author-hancheol-cho.html"
 
           <!-- 이력 정보 추가 -->
           <div class="mt-4">
-            <h5 class="font-weight-bold">History</h5>
+            <h5 class="font-weight-bold">Education</h5>
             <ul>
               {% for item in site.members['Hancheol-Cho'].history %}
                 <li>{{ item }}</li>
@@ -31,7 +31,7 @@ permalink: "/author-hancheol-cho.html"
       </div>
 
       <!-- Published by: Hancheol Cho의 모든 논문 목록 출력 -->
-      <h4 class="font-weight-bold spanborder"><span>Published by {{ site.members['Hancheol-Cho'].name }}</span></h4>
+      <h4 class="font-weight-bold spanborder"><span>Professional Experiences</span></h4>
       <ul>
         {% assign publications = site.data.publications | where_exp: "publication", "publication.authors contains 'Hancheol Cho'" %}
         {% for publication in publications %}

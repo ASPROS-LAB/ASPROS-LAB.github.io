@@ -11,13 +11,13 @@
   
   .dropdown-item {
     padding: 5px 10px;
-    color: #007bff;
+    color: #000000;
     text-decoration: none;
     display: block;
   }
   
   .dropdown-item:hover {
-    background-color: #007bff;
+    background-color: #023e7e;
     color: white;
   }
   
