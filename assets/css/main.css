@@ -3338,7 +3338,8 @@ input[type="button"].btn-block {
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem;
+ }
   .navbar-toggler:hover, .navbar-toggler:focus {
     text-decoration: none; }
   .navbar-toggler:not(:disabled):not(.disabled) {
@@ -3409,7 +3410,25 @@ input[type="button"].btn-block {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
-    padding-left: 0; } }
+    padding-left: 0; } 
+
+  /* ✅ 여기 추가 */
+
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-item {
+    width: 100%;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+  } }
 
 @media (min-width: 992px) {
   .navbar-expand-lg {

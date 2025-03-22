@@ -17,7 +17,7 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
 <div class="row remove-site-content-margin">
     
     <!-- latest post -->
-    {% assign latest_post = site.posts[0] %}
+    <!-- {% assign latest_post = site.posts[0] %}
     <div class="col-md-6">
     <div class="card border-0 mb-4 box-shadow">   
     <a href="{{site.baseurl}}{{latest_post.url}}">
@@ -44,12 +44,30 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
     </div>
     </div>
     </div>
+    </div> -->
+
+    {% assign intro_page = site.pages | where: "permalink", "/intro/" | first %}
+    <div class="container mb-4">
+      {% if intro_page.title %}
+      <h2 class="display-5 font-weight-bold text-center mb-3">{{ intro_page.title }}</h2>
+      {% endif %}
+      <div class="card border-0 box-shadow">
+        {% if intro_page.thumbnail %}
+        <img src="{{ intro_page.thumbnail | relative_url }}" alt="{{ intro_page.title }}" class="img-fluid w-100 mb-3">
+        {% endif %}
+        <div class="card-body px-0 pb-0">
+          <div class="post-content">
+            {{ intro_page.content }}
+          </div>
+        </div>
+      </div>
     </div>
+
     
-    <div class="col-md-6">
+    <!-- <div class="col-md-6"> -->
         
         <!-- second latest post -->
-        {%- assign second_post = site.posts[1] -%}        
+        <!-- {%- assign second_post = site.posts[1] -%}        
         <div class="mb-3 d-flex align-items-center">                
                 {% if second_post.image %}
                 <div class="col-md-4">
@@ -73,10 +91,10 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                         {{ second_post.date | date: '%b %d, %Y' }}
                     </small>
                 </div>
-            </div>
+            </div> -->
         
         <!-- third latest post -->
-        {%- assign third_post = site.posts[2] -%}        
+        <!-- {%- assign third_post = site.posts[2] -%}        
         <div class="mb-3 d-flex align-items-center">                
                 {% if third_post.image %}
                 <div class="col-md-4">
@@ -100,10 +118,10 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                         {{ third_post.date | date: '%b %d, %Y' }}
                     </small>
                 </div>
-            </div>
+            </div> -->
         
         <!-- fourth latest post -->
-        {%- assign fourth_post = site.posts[3] -%}        
+        <!-- {%- assign fourth_post = site.posts[3] -%}        
         <div class="mb-3 d-flex align-items-center">                
                 {% if fourth_post.image %}
                 <div class="col-md-4">
@@ -127,32 +145,108 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
                         {{ fourth_post.date | date: '%b %d, %Y' }}
                     </small>
                 </div>
-            </div>
+            </div> -->
         
-    </div>
+    <!-- </div> -->
     
 </div>
     
+
+
 <!-- Sticky - add sticky tag to the post you want to highlight here - tags: [sticky] -->
-{% for post in site.posts %} 
-{% if post.tags contains "sticky" %}
-<div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 mt-3 mb-2rem bg-lightblue position-relative">
-    <div class="pl-4 pr-0 h-100 tofront">
-        <div class="row justify-content-between">
-            <div class="col-md-6 pt-6 pb-6 pr-lg-4 align-self-center">
-                <h1 class="mb-3">{{post.title}}</h1>
-                <p class="mb-3 lead">
-                    {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
-                </p>
-                <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
-            </div>
-            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{site.baseurl}}/{{ post.image }});">	
-            </div>
+{% assign research_page = site.pages | where: "url", "/research.html" | first %}
+{% if research_page %}
+<style>
+  #researchTab .nav-link {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    margin-right: 8px;
+    color: #333;
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  #researchTab .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+
+  #researchTab .nav-link:hover {
+    background-color: #e9f2ff;
+    color: #007bff;
+  }
+
+  .jumbotron.bg-lightblue {
+    background-color: #bbe4ff !important;
+  }
+</style>
+
+<div class="jumbotron jumbotron-fluid bg-lightblue py-5 position-relative">
+  <div class="container">
+
+    <!-- 카테고리 선택 탭 -->
+    <ul class="nav nav-pills mb-4" id="researchTab" role="tablist">
+      {% for category in research_page.categories %}
+        <li class="nav-item">
+          <button class="nav-link {% if forloop.first %}active{% endif %}" id="tab-{{ forloop.index0 }}" data-toggle="tab" data-target="#content-{{ forloop.index0 }}" role="tab" type="button">{{ category.title }}</button>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="tab-content" id="researchTabContent">
+      {% for category in research_page.categories %}
+      <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="content-{{ forloop.index0 }}" role="tabpanel">
+        <div class="row align-items-center">
+
+          <!-- 이미지 왼쪽 -->
+          <div class="col-md-6">
+            <img class="img-fluid rounded shadow-sm w-100" src="{{ category.image | relative_url }}" alt="{{ category.title }} image">
+          </div>
+
+          <!-- 설명 오른쪽 -->
+          <div class="col-md-6">
+            <h2 class="font-weight-bold mb-3">{{ category.title }}</h2>
+            <p class="lead">{{ category.description }}</p>
+            <a href="{{ site.baseurl }}{{ research_page.url }}" class="btn btn-dark mt-3">Read More</a>
+          </div>
+
         </div>
+      </div>
+      {% endfor %}
     </div>
-</div> 
+
+  </div>
+</div>
+
+<!-- Bootstrap 탭 기능이 작동하려면 아래 스크립트가 필요합니다 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('#researchTab button');
+    tabButtons.forEach(function (button) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        const targetId = this.getAttribute('data-target');
+        const panes = document.querySelectorAll('.tab-pane');
+        panes.forEach(p => p.classList.remove('show', 'active'));
+        const targetPane = document.querySelector(targetId);
+        if (targetPane) {
+          targetPane.classList.add('show', 'active');
+        }
+      });
+    });
+  });
+</script>
 {% endif %}
-{% endfor %}
+
+  
+
 
 
     
