@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Education must also train one for quick, resolute and effective thinking."
-categories: [ Jekyll, tutorial ]
+categories: [ publications ]
+tags : publications
 image: assets/images/3.jpg
+summary: "Our research on Kinéis-powered IoT satellites has been published..."
 ---
 There are lots of powerful things you can do with the Markdown editor
 

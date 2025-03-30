@@ -1,0 +1,143 @@
+<div class="sticky-top sticky-top-offset">
+    <h4 class="font-weight-bold spanborder"><span>Upcoming</span></h4>
+  
+    <!-- 달력 표시 -->
+    <div id="calendar" class="mb-4"></div>
+  
+    <!-- 날짜에 따른 이벤트 리스트 -->
+    <div id="event-list" class="p-3 border rounded bg-light">
+      <!-- JavaScript가 여기에 표시함 -->
+    </div>
+  </div>
+  
+  <!-- FullCalendar 스타일/스크립트 -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  
+  <!-- Jekyll → JavaScript 이벤트 데이터 -->
+  <script>
+    const events = [
+      {% for post in site.tags.events %}
+      {
+        title: "{{ post.title | escape }}",
+        date: "{{ post.date | date: '%Y-%m-%d' }}",
+        url: "{{ site.baseurl }}{{ post.url }}",
+        category: "{{ post.categories | join: ', ' }}"
+      },
+      {% endfor %}
+    ];
+  </script>
+  
+  <!-- FullCalendar 초기화 및 이벤트 필터 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const eventListEl = document.getElementById('event-list');
+  
+      function renderEventList(dateStr) {
+        const filtered = events.filter(e => e.date === dateStr);
+        if (filtered.length === 0) {
+          eventListEl.innerHTML = `<p class="text-muted">No events on <strong>${dateStr}</strong>.</p>`;
+          return;
+        }
+  
+        const html = filtered.map(e => `
+          <div class="mb-3">
+            <a href="${e.url}" class="text-dark h6 d-block mb-1">${e.title}</a>
+            <div class="text-muted small">${e.category || 'Uncategorized'}</div>
+          </div>
+        `).join('');
+  
+        eventListEl.innerHTML = `<h6 class="font-weight-bold mb-3">Events on ${dateStr}</h6>${html}`;
+      }
+  
+      const today = new Date().toISOString().split('T')[0];
+  
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: today,
+        height: "auto",
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+        },
+        events: events.map(e => ({
+          title: e.title,
+          start: e.date,
+          url: e.url
+        })),
+        dateClick: function (info) {
+          renderEventList(info.dateStr);
+        }
+      });
+  
+      calendar.render();
+      renderEventList(today);
+    });
+  </script>
+  
+  <!-- 🎨 스타일 보완 -->
+  <style>
+    #calendar {
+      font-size: 0.8rem;
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+    }
+  
+    .fc-toolbar {
+      margin-bottom: 0.5rem;
+    }
+  
+    .fc .fc-toolbar-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  
+    .fc-button {
+      background-color: transparent !important;
+      border: none !important;
+      color: #007bff !important;
+      font-size: 0.75rem !important;
+      padding: 2px 6px !important;
+    }
+  
+    .fc-button:hover {
+      background-color: #e9f2ff !important;
+    }
+  
+    .fc-daygrid-day-number {
+      font-size: 0.75rem;
+      padding: 2px;
+    }
+  
+    .fc-day-today {
+      background-color: #e3f2fd !important;
+      border-radius: 4px;
+    }
+  
+    .fc-event {
+      background-color: #007bff;
+      border: none;
+      font-size: 0.65rem;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  
+    #event-list h6 {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    #event-list a {
+      font-size: 0.85rem;
+    }
+  
+    #event-list .text-muted {
+      font-size: 0.75rem;
+    }
+  </style>
+  

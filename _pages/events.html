@@ -1,0 +1,89 @@
+---
+layout: default
+title: Events Calendar
+permalink: /events/
+---
+
+<!-- FullCalendar 스타일/스크립트 (head 또는 상단에 추가 가능) -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<div class="container my-5">
+  <h2 class="mb-4 font-weight-bold">📅 Events Calendar</h2>
+
+  <!-- 🗓️ 달력 표시 -->
+  <div id="calendar" class="mb-5"></div>
+
+  <!-- 📌 날짜에 해당하는 이벤트 리스트 -->
+  <div id="event-list" class="p-4 border rounded bg-light">
+    <!-- 선택한 날짜의 이벤트가 여기에 표시됨 -->
+  </div>
+</div>
+
+<!-- 📦 Jekyll 포스트 데이터를 JS로 변환 -->
+<script>
+  const events = [
+    {% for post in site.tags.events %}
+    {
+      title: "{{ post.title | escape }}",
+      date: "{{ post.date | date: '%Y-%m-%d' }}",
+      url: "{{ site.baseurl }}{{ post.url }}"
+    },
+    {% endfor %}
+  ];
+</script>
+
+<!-- 🧠 FullCalendar + 이벤트 필터링 로직 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+    const eventListEl = document.getElementById('event-list');
+
+    // 이벤트 리스트 렌더링 함수
+    function renderEventList(dateStr) {
+      const filtered = events.filter(e => e.date === dateStr);
+
+      if (filtered.length === 0) {
+        eventListEl.innerHTML = `
+          <p class="text-muted">No events on <strong>${dateStr}</strong>.</p>`;
+        return;
+      }
+
+      const html = filtered.map(e => `
+        <div class="mb-3">
+          <a href="${e.url}" class="text-dark h5 d-block">${e.title}</a>
+          <small class="text-muted">${e.date}</small>
+        </div>
+      `).join('');
+
+      eventListEl.innerHTML = `
+        <h5 class="font-weight-bold mb-3">Events on ${dateStr}</h5>
+        ${html}`;
+    }
+
+    // 오늘 날짜
+    const today = new Date().toISOString().split('T')[0];
+
+    // FullCalendar 초기화
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      initialDate: today,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      events: events.map(e => ({
+        title: e.title,
+        start: e.date,
+        url: e.url
+      })),
+      dateClick: function (info) {
+        renderEventList(info.dateStr);
+      }
+    });
+
+    calendar.render();
+    renderEventList(today); // 페이지 로딩 시 오늘 날짜의 이벤트 먼저 보여줌
+  });
+</script>

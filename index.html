@@ -245,69 +245,95 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
 </script>
 {% endif %}
 
-  
 
 
 
-    
 
 
-{% endif %} <!--endif page url is / -->
-    
 
 
-<!-- Now the rest of the posts with the usual loop but with an offset:4 on the first page so we can skeep the first 4 posts displayed above -->
-    
+
 <div class="row mt-3">
-   
-    <div class="col-md-8 main-loop">
-        
-        <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
-        
+  <div class="col-md-8 main-loop">
 
-        {% for post in paginator.posts %}
-        
-            {% include main-loop-card.html %}
-        
-        {% endfor %}
-        
-        <div class="mt-5">
-         <!-- Pagination links -->
-            {% if paginator.total_pages > 1 %}
-            <ul class="pagination"> 
-              {% if paginator.previous_page %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a></li>
-              {% else %}
-                <li class="page-item disabled"><span class="prev page-link">&laquo;</span></li>
-              {% endif %}
+    <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
 
-              {% for page in (1..paginator.total_pages) %}
-                {% if page == paginator.page %}
-                <li class="page-item disabled"><span class="webjeda page-link">{{ page }}</span></li>
-                {% elsif page == 1 %}
-                <li class="page-item"><a class="page-link" href="{{site.baseurl}}/">{{ page }}</a></li>
-                {% else %}
-                <li class="page-item"><a class="page-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
-                {% endif %}
-              {% endfor %}
+    {% assign filtered_posts = site.posts | where_exp: "post", "post.tags contains 'news' or post.tags contains 'publications'" %}
+    {% for post in filtered_posts %}
+    <a href="{{ post.url | relative_url }}" class="card-link-wrapper">
+      <div class="card mb-4 border-0 shadow-sm">
+        <div class="row g-0 align-items-center">
+          <div class="col-8">
+            <div class="card-body">
 
-              {% if paginator.next_page %}
-                <li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a></li>
-              {% else %}
-                <li class="page-item disabled"><span class="next page-link">&raquo;</span></li>
-              {% endif %}
-            </ul>
-            {% endif %}      
+              <!-- 🔹 상단 태그 표시 -->
+              <div class="mb-2">
+                {% for tag in post.tags %}
+                  <span class="badge bg-secondary text-uppercase me-1">{{ tag }}</span>
+                {% endfor %}
+              </div>
+
+              <h5 class="card-title mb-2">{{ post.title }}</h5>
+
+              <!-- ✅ 날짜 표시 -->
+              <p class="card-text text-muted small">
+                {{ post.date | date: "%Y-%m-%d" }}
+              </p>
+
+            </div>
+          </div>
+          {% if post.image %}
+          <div class="col-4">
+            <img src="{{ post.image | relative_url }}" class="img-fluid rounded-end" alt="{{ post.title }}">
+          </div>
+          {% endif %}
         </div>
-        
-    </div>
-    
-    <div class="col-md-4">
-        {% include sidebar-featured.html %}    
-    </div>
-    
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+
+  <div class="col-md-4">
+    {% include sidebar-events.html %}
+  </div>
 </div>
 
+<!-- ✅ 스타일 -->
+<style>
+  .card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
 
+  .card-link-wrapper:hover {
+    text-decoration: none;
+  }
 
-</div>
+  .card-title {
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .card-link-wrapper:hover .card-title {
+    color: #007bff;
+  }
+
+  .card-text {
+    color: #6c757d;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    background-color: #6c757d;
+    color: white;
+    padding: 0.35em 0.6em;
+    border-radius: 0.25rem;
+  }
+
+  .badge + .badge {
+    margin-left: 0.25rem;
+  }
+</style>
+{% endif %} <!--endif page url is / -->
