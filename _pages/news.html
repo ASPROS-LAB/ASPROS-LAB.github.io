@@ -3,3 +3,71 @@ title: "News"
 layout: default
 permalink: /news.html
 ---
+
+<div class="container my-5">
+  <h1 class="mb-4 font-weight-bold">News</h1>
+
+  {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" | sort: "date" | reverse %}
+
+  {% for post in news_posts %}
+  <!-- 🔗 전체 박스를 링크로 감쌈 -->
+  <a href="{{ post.url | relative_url }}" class="text-decoration-none text-reset d-block mb-5">
+    <div class="row align-items-center border-bottom pb-4">
+
+      <!-- 텍스트 정보 -->
+      <div class="col-md-9">
+        <p class="mb-1 text-muted small">{{ post.date | date: "%B %d, %Y" }}</p>
+
+        <!-- 제목 (남색) -->
+        <h5 class="font-weight-bold mb-2 news-item-title">{{ post.title }}</h5>
+
+        <!-- news 제외 카테고리 -->
+        {% assign other_categories = post.categories | where_exp: "c", "c != 'news'" %}
+        {% if other_categories.size > 0 %}
+        <p class="news-item-category font-weight-bold small mb-0">
+          {{ other_categories | join: ', ' | capitalize }}
+        </p>
+        {% endif %}
+      </div>
+
+      <!-- 썸네일 이미지 -->
+      {% if post.image %}
+      <div class="col-md-3">
+        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="img-fluid rounded">
+      </div>
+      {% endif %}
+
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<!-- ✅ 스타일 -->
+<style>
+  /* 제목 색상: 남색 */
+  .news-item-title {
+    color: #003366;
+    transition: color 0.2s ease;
+  }
+
+  /* hover 시 강조 */
+  a.text-reset:hover .news-item-title {
+    text-decoration: underline;
+    color: #001f4d;
+  }
+
+  /* 카테고리 텍스트 */
+  .news-item-category {
+    color: #003366;
+  }
+
+  /* 이미지 스타일 */
+  .img-fluid {
+    max-height: 120px;
+    object-fit: cover;
+  }
+
+  .border-bottom {
+    border-color: #eee !important;
+  }
+</style>
