@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Could we reinvent the charm of old cities"
+title:  "sample"
 author: jane
 categories: [ news, tutorial ]
 image: assets/images/home.jpg
