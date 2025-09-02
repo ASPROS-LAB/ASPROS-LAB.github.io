@@ -2,7 +2,7 @@
 title: "Welcome to ASPROS"
 layout: page
 permalink: /intro/
-thumbnail: /assets/images/APSROS-MAIN.jpg
+thumbnail: /assets/images/ASPROS-MAIN.jpg
 ---
 
 ## About ASPROS
