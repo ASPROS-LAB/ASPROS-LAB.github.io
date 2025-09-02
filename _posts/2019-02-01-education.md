@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  "Education must also train one for quick, resolute and effective thinking."
-categories: [ publications ]
-tags : publications
+tags: tutorial
 image: assets/images/3.jpg
 summary: "Our research on Kinéis-powered IoT satellites has been published..."
 ---
