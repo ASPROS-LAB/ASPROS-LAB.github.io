@@ -266,7 +266,8 @@ description: "A great Jekyll theme developed by Sal @wowthemesnet."
     <a href="{{ post.url | relative_url }}" class="card-link-wrapper">
       <div class="card mb-4 border-0 shadow-sm">
         <div class="row g-0 align-items-center">
-          <div class="col-8">
+          <!-- ✅ 이미지 유무에 따라 col 크기 조정 -->
+          <div class="{% if post.image %}col-8{% else %}col-12{% endif %}">
             <div class="card-body">
 
               <!-- 🔹 상단 태그 표시 -->
